@@ -79,7 +79,7 @@ h1 span{
   position:relative;
   width:100%;
   height:580px;
-  background:url('../img/background/start-page.jpg') 0px 0px fixed;
+ /* background:url('http://farm9.staticflickr.com/8219/8293930202_dee63457a6_b.jpg')no-repeat scroll center bottom / cover;*/
 }
 
 .start-page .opacity{
