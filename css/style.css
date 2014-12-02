@@ -47,18 +47,18 @@ p{
 
 
 h1 span{
-  color:#2fa68e;
+  color:#258dc8;
 }
 
 
 ::selection {
   background: #fff;
-  color:#2fa68e;
+  color:#258dc8;
 }
 
 ::-moz-selection {
   background: #fff;
-  color:#2fa68e;
+  color:#258dc8;
 }
 
 
@@ -584,7 +584,8 @@ h1 span{
   position:relative;
   width:100%;
   height:307px;
-  background:url('../img/background/partners.jpg') 0px 0px fixed;
+  /*background:url('../img/background/partners.jpg') 0px 0px fixed;*/
+  background:url('http://farm9.staticflickr.com/8219/8293930202_dee63457a6_b.jpg')no-repeat fixed center center / cover;
 }
 
 .partners .opacity{

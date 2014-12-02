@@ -1,3 +1,28 @@
+<?php         
+
+          #Conectamos con MySQL
+          $conexion = mysql_connect("localhost","eagjnet","fgarllim197919")
+          or die ("Fallo en el establecimiento de la conexión");
+          
+          mysql_set_charset('utf8', $conexion);
+          //Para mostrar los acentos
+          
+          #Seleccionamos la base de datos a utilizar
+          mysql_select_db("eagjnet_wpblog")
+          or die("Error en la selección de la base de datos");
+          
+          #Efectuamos la consulta SQL
+          $result = mysql_query ("select * from wp_posts WHERE post_mime_type like 'image%' ORDER BY post_parent DESC LIMIT 0, 6" )
+          or die("Error en la consulta SQL");
+          
+          #Seleccionamos la base de datos a utilizar
+          mysql_select_db("eagjnet_web")
+          or die("Error en la selección de la base de datos");
+          
+          #Efectuamos la consulta SQL
+          $resultimg = mysql_query ("select * from bgimages ORDER BY id" )
+          or die("Error en la consulta SQL");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +58,7 @@
         <div class="text">
         
           <h1>Bienvenido<br/>
-          A mi <span>web</span></h1>
+          A mi <span>website</span></h1>
           <p>Espero que te resulte útil</p>
           
           <a href="#about-us"><div class="read-more">Leer mas</div></a>
@@ -133,6 +158,8 @@
 
   <section class="portfolio" id="portfolio">
 
+        
+
 
     <div class="portfolio-margin">
     
@@ -142,8 +169,26 @@
     <!-- 1 item portoflio-->
     
         <ul class="grid">
+            <?php
+          #Mostramos los resultados obtenidos
+          while( $row = mysql_fetch_array ( $result )) {
+             
+            echo "<li>
+                  <a href=\"".$row['url']."\" target=\"_blank\">
+                    <img src=".$row['guid'].">
+                    <div class=\"text\">
+                      <p>".$row['post_title']."</p>              
+                      <p class=\"description\">".$row['post_content']."</p>
+                    </div>               
+                  </a>
+                               
+              </li>";            
+             
+            }
+          ?>        
         
-          <li>
+        
+         <!--  <li>
             <a href="#">
               <img src="img/portfolio/1.png" alt="Portfolio item" />
                 <div class="text">
@@ -151,11 +196,11 @@
                   <p class="description">Your text here...</p>   
               </div>
             </a>
-          </li>
+          </li> -->
           
           <!-- 2 item portoflio-->
           
-          <li>
+          <!-- <li>
             <a href="#">
               <img src="img/portfolio/2.png" alt="Portfolio item" />
                 <div class="text">
@@ -163,11 +208,11 @@
                   <p class="description">Your text here...</p>               
               </div>
             </a>
-          </li>      
+          </li>     -->  
 
           <!-- 3 item portoflio-->
           
-          <li>
+          <!-- <li>
             <a href="#">
               <img src="img/portfolio/3.png" alt="Portfolio item" />
                 <div class="text">
@@ -175,10 +220,10 @@
                   <p class="description">Your text here...</p>           
               </div>
             </a>
-          </li>                
+          </li>      -->           
         </ul>  
    
-   <a href="#"><div class="read-more">Load more</div></a>
+   <a href="#"><div class="read-more">Ver más</div></a>
    
    </div>   
          
@@ -198,7 +243,7 @@
     
       <div class="content">
       
-        <h2>Thanks for partners</h2>
+        <h2>Redes sociales</h2>
         
             <div class="logo">
           
@@ -288,7 +333,7 @@
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <!-- jQuery -->
 	<script src="js/jquery.parallax.js"></script> <!-- jQuery Parallax -->
-	<script src="js/jquery.nicescroll.js"></script> <!-- jQuery NiceScroll -->
+	// <script src="js/jquery.nicescroll.js"></script> <!-- jQuery NiceScroll -->
 	<script src="js/jquery.sticky.js"></script> <!-- jQuery Stick Menu -->
 	<script src="js/script.js"></script> <!-- All script -->
   <script src="js/jquery.backstretch.min.js"></script> <!-- All script -->
@@ -326,5 +371,8 @@ $(document).ready(
   
 
 </body>
+<?php
+  mysqli_close($conexion);
+?>
 
 </html>
